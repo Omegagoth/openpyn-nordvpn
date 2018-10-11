@@ -528,7 +528,7 @@ falling back to wait of 1 second between pings, pings will be slow")
                     stdout=subprocess.PIPE)
             # pipe the output of ping to grep.
             ping_output = subprocess.check_output(
-                ["grep", "-B", "1", "min/avg/max/"], stdin=ping_proc.stdout)
+                ["grep", "-B", "1", "min/avg/max"], stdin=ping_proc.stdout)
 
             ping_string = str(ping_output)
             # logger.debug(ping_string)
