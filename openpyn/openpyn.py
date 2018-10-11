@@ -550,13 +550,16 @@ falling back to wait of 1 second between pings, pings will be slow")
 
         if stats:
             print(Style.BRIGHT + Fore.BLUE + "Pinging Server " + i[0] + " min/avg/max/mdev = \
-" + Fore.GREEN + str(ping_list), Fore.BLUE + "\n")
+                " + Fore.GREEN + str(ping_list), Fore.BLUE + "\n")
         ping_result.append(i)
         ping_result.append(ping_list)
         # logger.debug(ping_result)
         pinged_servers_list.append(ping_result)
     # sort by Ping Avg and Median Deviation
-    pinged_servers_list = sorted(pinged_servers_list, key=lambda item: (item[1][1], item[1][3]))
+    if len(pinged_servers_list[0][1]) >= 4:
+        pinged_servers_list = sorted(pinged_servers_list, key=lambda item: (item[1][1], item[1][3]))
+    else:
+        pinged_servers_list = sorted(pinged_servers_list, key=lambda item: item[1][1])
     return pinged_servers_list
 
 
